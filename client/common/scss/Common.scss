@@ -1,0 +1,57 @@
+.app {
+    padding: 0px;
+    margin: 0px;
+}
+
+// header
+.header {
+    width: 100%;
+
+    .left {
+        float: left;
+        width: 200px;
+        height: 50px;
+        background: #000000;
+        line-height: 50px;
+
+        .span {
+            margin-left: 30px;
+            font-size: 20px;
+            color: #ffffff;
+            letter-spacing: 1.62px;
+            vertical-align: middle;
+        }
+    }
+    .right {
+        height: 50px;
+        margin-left: 200px;
+        background: #000000;
+        line-height: 50px;
+
+        .img {
+            float: right;
+            width: 32px;
+            height: 32px;
+            border-radius: 100%;
+            margin-top: 9px;
+            margin-right: 10px;
+        }
+        .description {
+            float: right;
+            margin-right: 10px;
+            color: #fff;
+        }
+        .loginout {
+            float: right;
+            margin-right: 20px;
+            color: #fff;
+        }
+    }
+}
+
+//-- main
+.main {
+    float: right;
+    width: 88%;
+    height: auto;
+}
