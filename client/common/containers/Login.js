@@ -7,6 +7,7 @@ const FormItem = Form.Item;
 import utils from "../../shared/utils";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
+import styles from "../scss/Login";
 class Logins extends Component {
     static propTypes = {
         cookies: instanceOf(Cookies).isRequired

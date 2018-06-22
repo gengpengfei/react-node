@@ -12,7 +12,7 @@ class Header extends Component {
         this.props.router.push("login");
     };
     render() {
-        const userInfo = this.props.cookies.get("users");
+        const userInfo = this.props.userInfo;
         return (
             <header className={styles.header}>
                 <div className={styles.left}>
@@ -33,7 +33,4 @@ class Header extends Component {
         );
     }
 }
-function mapStateToProps(state) {
-    return { userInfo: state.userInfoReducer.userInfo };
-}
-export default connect(mapStateToProps)(Header);
+export default Header;

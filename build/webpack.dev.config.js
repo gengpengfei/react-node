@@ -33,6 +33,14 @@ module.exports = {
                     ] //
                 }
             },
+
+            {
+                test: /\.scss$/,
+                loader: ExtractTextPlugin.extract([
+                    "css?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:8]",
+                    "sass"
+                ])
+            },
             {
                 test: /\.css$/,
                 //-- 先加载css然后再渲染视图
@@ -48,14 +56,6 @@ module.exports = {
                     cacheDirectory: true,
                     compact: false
                 }
-            },
-            {
-                test: /\.scss$/,
-                loaders: [
-                    "style",
-                    "css?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:8]",
-                    "sass"
-                ]
             },
             {
                 test: /\.(jpg|png|gif|webp)$/,

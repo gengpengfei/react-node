@@ -14,13 +14,19 @@ class Common extends Component {
         cookies: instanceOf(Cookies).isRequired
     };
     constructor(props) {
-        super(props);
+        super();
     }
-    componentDidMount() {
+    componentWillMount() {
         const userInfo = this.props.cookies.get("users");
-        if (userInfo === null || userInfo === "" || userInfo === undefined) {
+        if (
+            userInfo == null ||
+            userInfo == "" ||
+            userInfo == undefined ||
+            userInfo == {}
+        ) {
             this.props.router.push("login");
         }
+        this.setState({ userInfo: userInfo });
         console.log(
             'Redux Devtools is now available. Press key "ctrl-h" to toggleVisibility. Press key "ctrl-w" to changePosition.'
         );
@@ -29,7 +35,7 @@ class Common extends Component {
         const { children, ...props } = this.props;
         return (
             <div className={styles.app}>
-                <Header {...this.props} />
+                <Header userInfo={this.state.userInfo} />
                 <Navbar />
                 <Main>
                     {Children.map(children, child =>
@@ -42,7 +48,4 @@ class Common extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return state;
-}
-export default connect(mapStateToProps)(withCookies(Common));
+export default withCookies(Common);
