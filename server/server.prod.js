@@ -19,5 +19,5 @@ app.use(router.routes());
 app.use(router.allowedMethods());
 app.listen(port);
 console.log(
-    `\n==> 🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.\n`
+    `\n==> 🌎  Listening on port ${port} as prod. Open up http://localhost:${port}/ in your browser.\n`
 );

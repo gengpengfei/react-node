@@ -67,7 +67,7 @@ app.use(clientRoute);
 app.use(router.routes());
 app.use(router.allowedMethods());
 console.log(
-    `\n==> 🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.\n`
+    `\n==> 🌎  Listening on port ${port} as dev. Open up http://localhost:${port}/ in your browser.\n`
 );
 app.use(
     convert(

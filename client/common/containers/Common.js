@@ -17,7 +17,11 @@ class Common extends Component {
         super();
     }
     componentWillMount() {
-        const userInfo = this.props.cookies.get("users");
+        console.log(
+            'Redux Devtools is now available. Press key "ctrl-h" to toggleVisibility. Press key "ctrl-w" to changePosition.'
+        );
+    }
+    checkLogin(userInfo) {
         if (
             userInfo == null ||
             userInfo == "" ||
@@ -26,16 +30,19 @@ class Common extends Component {
         ) {
             this.props.router.push("login");
         }
-        this.setState({ userInfo: userInfo });
-        console.log(
-            'Redux Devtools is now available. Press key "ctrl-h" to toggleVisibility. Press key "ctrl-w" to changePosition.'
-        );
     }
+    loginout = () => {
+        this.props.cookies.set("users", "");
+        this.props.router.push("login");
+    };
     render() {
+        const userInfo = this.props.cookies.get("users");
+        this.checkLogin(userInfo);
         const { children, ...props } = this.props;
+        console.log(this.props, "1111111111111111");
         return (
             <div className={styles.app}>
-                <Header userInfo={this.state.userInfo} />
+                <Header {...userInfo} loginout={this.loginout} />
                 <Navbar />
                 <Main>
                     {Children.map(children, child =>

@@ -1,5 +1,6 @@
 const path = require("path"),
     webpack = require("webpack"),
+    autoprefixer = require("autoprefixer"),
     HtmlWebpackPlugin = require("html-webpack-plugin"),
     ExtractTextPlugin = require("extract-text-webpack-plugin"),
     ProgressBarPlugin = require("progress-bar-webpack-plugin");
@@ -33,13 +34,12 @@ module.exports = {
                     ] //
                 }
             },
-
             {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract([
-                    "css?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:8]",
-                    "sass"
-                ])
+                loader: ExtractTextPlugin.extract(
+                    "style",
+                    "css?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:8]!postcss!sass"
+                )
             },
             {
                 test: /\.css$/,
@@ -71,6 +71,7 @@ module.exports = {
             }
         ]
     },
+    postcss: [autoprefixer({ browsers: ["> 5%"] })],
     resolve: { extensions: ["", ".js", ".json", ".scss", ".css"] },
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(),
@@ -88,6 +89,8 @@ module.exports = {
             template: "./views/tpl/index.tpl.html"
         }),
         new ProgressBarPlugin({ summary: false }),
-        new ExtractTextPlugin("app.css")
+        new ExtractTextPlugin("[name].[contenthash:8].css", {
+            allChunks: true
+        })
     ]
 };

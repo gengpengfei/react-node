@@ -9,7 +9,7 @@ class Welcome extends Component {
     };
     constructor(props) {
         super(props);
-        this.props = this.props.bind(this);
+        this.check = this.check.bind(this);
     }
 
     check = () => {
