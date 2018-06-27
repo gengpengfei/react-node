@@ -40,11 +40,11 @@ function defineModel(name, attributes) {
         }
     }
     attrs.create_time = {
-        type: Sequelize.BIGINT,
+        type: Sequelize.STRING,
         allowNull: false
     };
     attrs.update_time = {
-        type: Sequelize.BIGINT,
+        type: Sequelize.STRING,
         allowNull: false
     };
     attrs.version = {

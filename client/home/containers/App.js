@@ -6,14 +6,12 @@ class App extends Component {
         super(props);
     }
     render() {
-        const { actions } = this.props;
         return (
             <div>
                 <Bread routes={this.props.routes} />
-                <SectionMain actions={actions} />
+                <SectionMain {...this.props} />
             </div>
         );
     }
 }
-
 export default App;

@@ -53,5 +53,7 @@ class Common extends Component {
         );
     }
 }
-
-export default withCookies(Common);
+function mapDispatchToProps(dispatch) {
+    return dispatch;
+}
+export default connect()(withCookies(Common));
