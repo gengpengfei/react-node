@@ -28,7 +28,11 @@ class Navbar extends Component {
                 mode="inline"
                 openKeys={this.state.openKeys}
                 onOpenChange={this.onOpenChange}
-                style={{ width: "12%", float: "left" }}
+                style={{
+                    width: "10%",
+                    float: "left",
+                    borderRight: "1px solid #9e9e9e"
+                }}
             >
                 <SubMenu
                     key="sub1"
@@ -40,10 +44,13 @@ class Navbar extends Component {
                     }
                 >
                     <Menu.Item key="5">
-                        <Link to="explore">店铺列表</Link>
+                        <Link to="/explore">店铺列表</Link>
                     </Menu.Item>
                     <Menu.Item key="6">
-                        <Link to="shared">店铺评价列表</Link>
+                        <Link to="/explore/2">店铺详情</Link>
+                    </Menu.Item>
+                    <Menu.Item key="7">
+                        <Link to="/explore/2/detail">店铺编辑</Link>
                     </Menu.Item>
                 </SubMenu>
                 <SubMenu
@@ -55,8 +62,8 @@ class Navbar extends Component {
                         </span>
                     }
                 >
-                    <Menu.Item key="7">会员列表</Menu.Item>
-                    <Menu.Item key="8">会员等级</Menu.Item>
+                    <Menu.Item key="8">会员列表</Menu.Item>
+                    <Menu.Item key="9">会员等级</Menu.Item>
                 </SubMenu>
             </Menu>
         );

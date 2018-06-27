@@ -1,44 +1,50 @@
-import React, {Component} from 'react'
-import styles from '../sass/SectionMain'
+import React, { Component } from "react";
+import styles from "../sass/SectionMain";
 
 class SectionMain extends Component {
     constructor() {
-        super()
+        super();
     }
 
     handleFetch() {
-        const {actions} = this.props
+        const { actions } = this.props;
 
-        actions.fetchUserInfo()
+        actions.fetchUserInfo();
     }
 
     handleClear() {
-        const {actions} = this.props
+        const { actions } = this.props;
 
-        actions.clearUserInfo()
+        actions.clearUserInfo();
     }
 
     render() {
-        const {userInfo} = this.props
+        const { userInfo } = this.props;
 
         return (
             <section className={styles.sectionMain}>
                 Explore
-                <a href="javascript:void(0)"
+                <a
+                    href="javascript:void(0)"
                     className={styles.btn}
-                    onClick={this.handleFetch.bind(this)}>
+                    onClick={this.handleFetch.bind(this)}
+                >
                     Fetch Data
                 </a>
-                <a href="javascript:void(0)"
+                <a
+                    href="javascript:void(0)"
                     className={styles.btn}
-                    onClick={this.handleClear.bind(this)}>
+                    onClick={this.handleClear.bind(this)}
+                >
                     Clear
                 </a>
-                <br/>
-                <span className={styles.info}>{userInfo && JSON.stringify(userInfo)}</span>
+                <br />
+                <span className={styles.info}>
+                    {userInfo && JSON.stringify(userInfo)}
+                </span>
             </section>
-        )
+        );
     }
 }
 
-export default SectionMain
+export default SectionMain;

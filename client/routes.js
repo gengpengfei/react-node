@@ -5,75 +5,105 @@ if (typeof require.ensure !== "function") {
     };
 }
 //-- 由于antd 的原因, 按需加载不能编译公共css
-const routes = {
-    childRoutes: [
-        {
-            path: "/",
-            component: require("./common/containers/Root")
-        },
-        {
-            path: "/login",
-            component: require("./common/containers/Login"),
+const routes = [
+    {
+        path: "/",
+        component: require("./common/containers/Root")
+    },
+    {
+        path: "login",
+        component: require("./common/containers/Login"),
+        getComponent(nextState, callback) {
+            require.ensure(
+                [],
+                require => {
+                    callback(null, require("./common/containers/Login"));
+                },
+                "login"
+            );
+        }
+    },
+    {
+        path: "/home",
+        component: require("./common/containers/Common"),
+        breadcrumbName: "REACT+NODE首页",
+        indexRoute: {
             getComponent(nextState, callback) {
                 require.ensure(
                     [],
                     require => {
-                        callback(null, require("./common/containers/Login"));
+                        callback(null, require("./home/containers/App"));
                     },
-                    "login"
+                    "home"
                 );
             }
         },
-        {
-            path: "/home",
-            component: require("./common/containers/Common"),
-            indexRoute: {
+        childRoutes: [
+            {
+                path: "/explore",
+                component: require("./explore/containers/App"),
+                breadcrumbName: "列表",
                 getComponent(nextState, callback) {
                     require.ensure(
                         [],
                         require => {
-                            callback(null, require("./home/containers/App"));
+                            callback(null, require("./explore/containers/App"));
                         },
-                        "home"
+                        "explore"
+                    );
+                },
+                childRoutes: [
+                    {
+                        path: "/explore/:id",
+                        component: require("./explore/containers/App"),
+                        breadcrumbName: "详情",
+                        getComponent(nextState, callback) {
+                            require.ensure(
+                                [],
+                                require => {
+                                    callback(
+                                        null,
+                                        require("./explore/containers/App")
+                                    );
+                                },
+                                "explore/info"
+                            );
+                        }
+                    },
+                    {
+                        path: "/explore/:id/detail",
+                        component: require("./explore/containers/App"),
+                        breadcrumbName: "编辑",
+                        getComponent(nextState, callback) {
+                            require.ensure(
+                                [],
+                                require => {
+                                    callback(
+                                        null,
+                                        require("./explore/containers/App")
+                                    );
+                                },
+                                "explore/edit"
+                            );
+                        }
+                    }
+                ]
+            },
+            {
+                path: "/about",
+                component: require("./about/containers/App"),
+                getComponent(nextState, callback) {
+                    require.ensure(
+                        [],
+                        require => {
+                            callback(null, require("./about/containers/App"));
+                        },
+                        "about"
                     );
                 }
-            },
-            childRoutes: [
-                {
-                    path: "/explore",
-                    component: require("./explore/containers/App"),
-                    getComponent(nextState, callback) {
-                        require.ensure(
-                            [],
-                            require => {
-                                callback(
-                                    null,
-                                    require("./explore/containers/App")
-                                );
-                            },
-                            "explore"
-                        );
-                    }
-                },
-                {
-                    path: "/about",
-                    component: require("./about/containers/App"),
-                    getComponent(nextState, callback) {
-                        require.ensure(
-                            [],
-                            require => {
-                                callback(
-                                    null,
-                                    require("./about/containers/App")
-                                );
-                            },
-                            "about"
-                        );
-                    }
-                }
-            ]
-        }
-    ]
-};
+            }
+        ]
+    }
+];
 
 export default routes;

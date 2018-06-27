@@ -39,7 +39,6 @@ class Common extends Component {
         const userInfo = this.props.cookies.get("users");
         this.checkLogin(userInfo);
         const { children, ...props } = this.props;
-        console.log(this.props, "1111111111111111");
         return (
             <div className={styles.app}>
                 <Header {...userInfo} loginout={this.loginout} />

@@ -1,21 +1,19 @@
-import React, {Component} from 'react'
-import SectionMain from '../components/SectionMain'
-import styles from '../sass/App'
-
+import React, { Component } from "react";
+import SectionMain from "../components/SectionMain";
+import Bread from "../../common/components/Bread";
 class App extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props);
     }
-
     render() {
-        const {actions} = this.props
-
+        const { actions } = this.props;
         return (
-            <div className={styles.app}>
-                <SectionMain actions={actions}></SectionMain>
+            <div>
+                <Bread routes={this.props.routes} />
+                <SectionMain actions={actions} />
             </div>
-        )
+        );
     }
 }
 
-export default App
+export default App;
