@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router";
 import styles from "../scss/Common";
-import header from "../static/avatar.png";
 class Header extends Component {
     constructor(props) {
         super(props);
@@ -29,10 +28,7 @@ class Header extends Component {
                     <span className={styles.description}>
                         {this.state.user_name}
                     </span>
-                    <img
-                        className={styles.img}
-                        src={this.state.head_img ? this.state.head_img : header}
-                    />
+                    <img className={styles.img} src={this.state.head_img} />
                 </div>
             </header>
         );

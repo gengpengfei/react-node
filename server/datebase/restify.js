@@ -13,7 +13,6 @@ module.exports = {
                     ctx.response.type = "application/json";
                     ctx.response.body = data;
                 };
-                console.log("ctxinfo:" + ctx);
                 try {
                     await next();
                 } catch (e) {
@@ -21,8 +20,9 @@ module.exports = {
                     ctx.response.status = 400;
                     ctx.response.type = "application/json";
                     ctx.response.body = {
-                        code: e.code || "internal:unknown_error",
-                        message: e.message || ""
+                        code: "-1",
+                        mes: e.message || "internal:unknown_error",
+                        data: {}
                     };
                 }
             } else {

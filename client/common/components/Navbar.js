@@ -62,7 +62,9 @@ class Navbar extends Component {
                         </span>
                     }
                 >
-                    <Menu.Item key="8">会员列表</Menu.Item>
+                    <Menu.Item key="8">
+                        <Link to="/userList">会员列表</Link>
+                    </Menu.Item>
                     <Menu.Item key="9">会员等级</Menu.Item>
                 </SubMenu>
             </Menu>

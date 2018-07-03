@@ -24,7 +24,7 @@ const routes = [
         }
     },
     {
-        path: "/home",
+        path: "home",
         component: require("./common/containers/Common"),
         breadcrumbName: "REACT+NODE首页",
         indexRoute: {
@@ -41,7 +41,6 @@ const routes = [
         childRoutes: [
             {
                 path: "/explore",
-                component: require("./explore/containers/App"),
                 breadcrumbName: "列表",
                 getComponent(nextState, callback) {
                     require.ensure(
@@ -55,7 +54,6 @@ const routes = [
                 childRoutes: [
                     {
                         path: "/explore/:id",
-                        component: require("./explore/containers/App"),
                         breadcrumbName: "详情",
                         getComponent(nextState, callback) {
                             require.ensure(
@@ -72,7 +70,6 @@ const routes = [
                     },
                     {
                         path: "/explore/:id/detail",
-                        component: require("./explore/containers/App"),
                         breadcrumbName: "编辑",
                         getComponent(nextState, callback) {
                             require.ensure(
@@ -90,15 +87,16 @@ const routes = [
                 ]
             },
             {
-                path: "/about",
-                component: require("./about/containers/App"),
+                path: "/userList",
+                component: require("./user/containers/UserList"),
+                breadcrumbName: "用户列表",
                 getComponent(nextState, callback) {
                     require.ensure(
                         [],
                         require => {
-                            callback(null, require("./about/containers/App"));
+                            callback(null, require("./explore/containers/App"));
                         },
-                        "about"
+                        "userList"
                     );
                 }
             }

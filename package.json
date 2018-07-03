@@ -82,7 +82,7 @@
         "source-map-support": "^0.4.10",
         "style-loader": "^0.13.1",
         "url-loader": "^0.5.7",
-        "webpack": "^2.*"
+        "webpack": "^1.13.1"
     },
     "author": "Chikara Chan",
     "repository": {

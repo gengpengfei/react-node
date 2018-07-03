@@ -10,7 +10,7 @@ const port = process.env.port || 3000;
 app.use(
     views(path.resolve(__dirname, "../views/prod"), { map: { html: "ejs" } })
 );
-app.use(serve(path.resolve(__dirname, "../dist/client")));
+app.use(serve(path.join(__dirname, "public")));
 //-- 自定义rest函数 , 统一处理api返回
 import { restify } from "./datebase/restify";
 app.use(restify());

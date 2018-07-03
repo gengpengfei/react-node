@@ -25,8 +25,7 @@ class Logins extends Component {
                 console.log("checkUserLogin-param:", values);
                 utils
                     .ajax({
-                        url: "/api/user/checkUserLogin",
-                        type: "post",
+                        url: "checkUserLogin",
                         data: values
                     })
                     .then(res => {
@@ -39,6 +38,7 @@ class Logins extends Component {
                             this.props.router.push("home");
                             message.success("登录成功", 3);
                         } else {
+                            console.log("checkUserLogin-err", res.data);
                             message.error(res.mes, 3);
                         }
                     });

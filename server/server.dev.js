@@ -42,6 +42,7 @@ const app = require("./app.js"),
     config = require("../build/webpack.dev.config"),
     port = process.env.port || 3000,
     compiler = webpack(config),
+    serve = require("koa-static"),
     { restify } = require("./datebase/restify");
 // Webpack hook event to write html file into `/views/dev` from `/views/tpl` due to server render
 compiler.plugin("emit", (compilation, callback) => {
@@ -61,6 +62,8 @@ compiler.plugin("emit", (compilation, callback) => {
 app.use(
     views(path.resolve(__dirname, "../views/dev"), { map: { html: "ejs" } })
 );
+//-- 静态文件指定(通过地址可直接访问静态文件,减少消耗)
+app.use(serve(path.join(__dirname, "../public")));
 //-- 自定义rest函数 , 统一处理api返回
 app.use(restify());
 app.use(clientRoute);
