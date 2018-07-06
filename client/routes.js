@@ -94,7 +94,10 @@ const routes = [
                     require.ensure(
                         [],
                         require => {
-                            callback(null, require("./explore/containers/App"));
+                            callback(
+                                null,
+                                require("./user/containers/UserList")
+                            );
                         },
                         "userList"
                     );

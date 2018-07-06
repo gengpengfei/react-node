@@ -68,15 +68,10 @@ function defineModel(name, attributes) {
             beforeValidate: function(obj) {
                 let now = Date.now();
                 if (obj.isNewRecord) {
-                    console.log("will create entity..." + obj);
-                    // if (!obj.id) {
-                    //     obj.id = generateId();
-                    // }
                     obj.create_time = now;
                     obj.update_time = now;
                     obj.version = 0;
                 } else {
-                    console.log("will update entity...");
                     obj.update_time = now;
                     obj.version++;
                 }
@@ -153,14 +148,13 @@ module.exports = exp;
 // $notLike: '%hat'       // NOT LIKE '%hat'
 // $iLike: '%hat'         // ILIKE '%hat' (case insensitive) (PG only)
 // $notILike: '%hat'      // NOT ILIKE '%hat'  (PG only)
-// $like: { $any: ['cat', 'hat']}
-//                        // LIKE ANY ARRAY['cat', 'hat'] - also works for iLike and notLike
+// $like: { $any: ['cat', 'hat']}       // LIKE ANY ARRAY['cat', 'hat'] - also works for iLike and notLike
 // $overlap: [1, 2]       // && [1, 2] (PG array overlap operator)
 // $contains: [1, 2]      // @> [1, 2] (PG array contains operator)
 // $contained: [1, 2]     // <@ [1, 2] (PG array contained by operator)
 // $any: [2,3]            // ANY ARRAY[2, 3]::INTEGER (PG only)
-
 // $col: 'user.organization_id' // = "user"."organization_id", with dialect specific column identifiers, PG in this example
+
 // order: [
 //     // 转义 username 并对查询结果按 DESC 方向排序
 //     ['username', 'DESC'],
@@ -183,3 +177,9 @@ module.exports = exp;
 //     // 按相关联的User 模型的嵌套关联的 Company 模型的 name 属性排序
 //     [User, Company, 'name', 'DESC'],
 //   ]
+
+// attributes: [
+//     ["id", "id"], //-- 重命名
+//     "user_name",
+//     [sequelize.fn("COUNT", sequelize.col("id")), "userCount"] //-- 聚合查询
+// ]

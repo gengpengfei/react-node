@@ -3,37 +3,28 @@ import fs from "fs";
 var userModel = model.new_user_model;
 async function getUserList(ctx) {
     var param = ctx.request.body;
-    var userModel = model.new_user_model;
-    // try {
-    const userlist = await userModel.findAll({
-        attributes: {
-            exclude: ["disabled", "pay_password", "password"] //-- 排除查询字段
-        },
-        where: {},
-        offset: 5, //-- 排除前5条数据
-        limit: 5, //-- 每页显示5条
-        order: [
-            // 转义 username 并对查询结果按 DESC 方向排序
-            ["create_time", "DESC"]
-        ]
-    });
-    console.log(userlist);
-    const userCount = await userModel.findAll({
-        attributes: [
-            ["id", "id"], //-- 重命名
-            "user_name",
-            [sequelize.fn("COUNT", sequelize.col("id")), "userCount"] //-- 聚合查询
-        ]
-    });
-    console.log("userCount:", userCount);
-    ctx.rest({
-        code: "1",
-        mes: "用户列表",
-        data: userlist
-    });
-    // } catch (err) {
-    //     ctx.rest({ code: "-1", mes: "网络延时请稍后重试", data: err });
-    // }
+    var offset = (param.page - 1) * param.limit,
+        limit = param.limit;
+    try {
+        const userlist = await userModel.findAll({
+            attributes: {
+                exclude: ["disabled", "pay_password", "password"] //-- 排除查询字段
+            },
+            offset: offset, //-- 排除前x条数据
+            limit: limit, //-- 每页显示x条
+            order: [
+                // 转义 username 并对查询结果按 DESC 方向排序
+                ["create_time", "DESC"]
+            ]
+        });
+        ctx.rest({
+            code: "1",
+            mes: "用户列表",
+            data: userlist
+        });
+    } catch (err) {
+        ctx.rest({ code: "-1", mes: "网络延时请稍后重试", data: err });
+    }
 }
 
 async function getUserInfo(ctx) {

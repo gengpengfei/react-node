@@ -33,13 +33,13 @@ function ajax(options) {
         }
     });
     action = options.type === "get" ? "query" : "send";
-    let error = { code: "-1", mes: "接口返回错误", data: {} };
     return new Promise(resolve => {
         promise[action](options.data)
             .then(res => {
                 resolve(res.body);
             })
             .catch(err => {
+                let error = { code: "-1", mes: "接口返回错误", data: err };
                 resolve(error);
             });
     });
