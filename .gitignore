@@ -7,4 +7,4 @@ coverage
 node_modules
 bower_components
 .DS_Store
-.package-lock.json
+package-lock.json
